@@ -1,0 +1,11 @@
+{
+  "name": "softbanto-site",
+  "private": true,
+  "type": "module",
+  "description": "SoftBanto（そふと番頭）の紹介サイト。Google Apps Script の web アプリとして配る",
+  "scripts": {
+    "bake": "node scripts/bake-assets.mjs",
+    "preview": "node scripts/bake-assets.mjs && node scripts/preview.mjs",
+    "push": "npm run bake && clasp push -f"
+  }
+}

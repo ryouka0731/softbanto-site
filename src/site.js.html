@@ -1,0 +1,229 @@
+// SoftBanto 紹介サイトの動き。GAS の web アプリでは index.html の <script> に取り込まれる。
+// 設定 (window.SITE) は Code.gs の doGet が渡す: { slide: ?slide=N, bantoUrl: 番頭の画面のリンク }
+(function () {
+  'use strict';
+  var SITE = window.SITE || {};
+  var root = document.documentElement;
+  var body = document.body;
+  var gsap = window.gsap;                 // GSAP 3.12.5 (標準ライセンス)。CDN が落ちていれば undefined
+  var ST = window.ScrollTrigger;
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var useMotion = !!(gsap && ST && !reduce);
+  var gs = window.google && window.google.script;   // GAS の中で動いているときだけある
+
+  // 動きの道具が来なかったら、隠していたものをすぐ見せる (CSS の形に戻る)
+  if (!useMotion) root.classList.remove('motion');
+  else gsap.registerPlugin(ST);
+
+  // ---------- 「番頭を開く」 ----------
+  if (SITE.bantoUrl) {
+    document.querySelectorAll('[data-banto-link]').forEach(function (a) {
+      a.href = SITE.bantoUrl;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.hidden = false;
+    });
+  }
+
+  // ---------- なめらかなスクロール (Lenis, MIT) ----------
+  var lenis = null;
+  if (window.Lenis && !reduce) {
+    lenis = new window.Lenis({ autoRaf: true, anchors: { offset: -64 }, lerp: 0.12 });
+    if (useMotion) lenis.on('scroll', ST.update);
+  }
+
+  // ---------- 入りの演出 ----------
+  function heroIn() {
+    if (!useMotion) return;
+    root.classList.add('motion-ready');
+    var tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    tl.fromTo('[data-hero-line]', { yPercent: 110 }, { yPercent: 0, duration: 0.9, stagger: 0.12 }, 0.1)
+      .fromTo('[data-hero]', { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.8, stagger: 0.1 }, 0.25)
+      .fromTo('[data-hero-oshi]', { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 1.0 }, 0.45);
+    // 推しはゆっくり呼吸する
+    breathe('.hero-oshi img');
+  }
+  function breathe(sel) {
+    gsap.to(sel, { scale: 1.025, y: -4, duration: 2.8, ease: 'sine.inOut', yoyo: true, repeat: -1, transformOrigin: '50% 92%' });
+  }
+
+  // 図の部品を順に出す: 流れ図は左から、ボードの札は上から落ちる、線は引かれる
+  function drawDiagram(fig) {
+    if (!useMotion || !fig) return;
+    var nodes = Array.prototype.slice.call(fig.querySelectorAll('.d-node, .oshi-stage, .oshi-acts li'))
+      .filter(function (n) { return !n.classList.contains('d-card') && !n.closest('.d-card'); });
+    var x = function (n) { try { return n.getBBox ? n.getBBox().x : 0; } catch (e) { return 0; } };
+    if (!fig.classList.contains('diagram-hub')) nodes.sort(function (a, b) { return x(a) - x(b); });
+    var tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    var lines = fig.querySelectorAll('.d-line[pathLength]');
+    if (lines.length) {
+      gsap.set(lines, { strokeDasharray: '1 1' });
+      tl.fromTo(lines, { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.6, stagger: 0.06 }, 0);
+    }
+    tl.fromTo(nodes, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.55, stagger: 0.12 }, lines.length ? 0.25 : 0);
+    var arrows = Array.prototype.slice.call(fig.querySelectorAll('.d-arrow[pathLength]')).sort(function (a, b) { return x(a) - x(b); });
+    if (arrows.length) {
+      gsap.set(arrows, { strokeDasharray: '1 1' });
+      tl.fromTo(arrows, { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.5, stagger: 0.14 }, 0.2);
+    }
+    var cards = fig.querySelectorAll('.d-card');
+    if (cards.length) tl.fromTo(cards, { opacity: 0, y: -26 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out', stagger: 0.12 }, 0.35);
+    var hanko = fig.querySelector('.d-hanko');
+    if (hanko) tl.fromTo(hanko, { opacity: 0, scale: 1.5, transformOrigin: '50% 50%' }, { opacity: 1, scale: 1, duration: 0.35, ease: 'power4.out' }, '-=0.1');
+  }
+
+  // スクロールで節がふわっと入る (1回だけ)
+  var slides = Array.prototype.slice.call(document.querySelectorAll('[data-slide]'));
+  function setupReveals() {
+    if (!useMotion) return;
+    slides.forEach(function (slide, idx) {
+      if (idx === 0) return;
+      var items = slide.querySelectorAll('[data-rv]');
+      if (!items.length) return;
+      gsap.set(items, { opacity: 0, y: 28 });
+      ST.create({
+        trigger: slide, start: 'top 82%', once: true,
+        onEnter: function () {
+          if (slide.dataset.shown) return;
+          slide.dataset.shown = '1';
+          gsap.to(items, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', stagger: 0.09 });
+          slide.querySelectorAll('.diagram').forEach(drawDiagram);
+        }
+      });
+    });
+    breathe('.closing-oshi');
+  }
+
+  heroIn();
+  setupReveals();
+
+  // ---------- 途中の枚を URL に残す ----------
+  // GAS の web アプリは iframe の中で動き、外の URL は google.script.history でしか変えられない。手元では #slide-N を使う。
+  function setUrlSlide(n) {
+    if (gs && gs.history) gs.history.replace(null, n ? { slide: String(n) } : {}, '');
+    else history.replaceState(null, '', n ? '#slide-' + n : location.pathname + location.search);
+  }
+  function slideFromHash() {
+    var m = /^#slide-(\d+)$/.exec(location.hash);
+    return m ? parseInt(m[1], 10) : 0;
+  }
+
+  // ---------- プレゼンモード ----------
+  var toggle = document.querySelector('[data-present-toggle]');
+  var ui = document.querySelector('[data-deck-ui]');
+  var pageEl = document.querySelector('[data-deck-page]');
+  var current = 0;
+  var presenting = false;
+  toggle.hidden = false;
+
+  function revealAll(slide) {
+    slide.dataset.shown = '1';
+    var items = slide.querySelectorAll('[data-rv]');
+    if (useMotion) gsap.set(items, { clearProps: 'opacity,transform' });
+  }
+
+  function show(i) {
+    current = Math.max(0, Math.min(slides.length - 1, i));
+    slides.forEach(function (s, k) {
+      var on = k === current;
+      s.classList.toggle('is-current', on);
+      if (on) { s.removeAttribute('aria-hidden'); s.scrollTop = 0; }
+      else s.setAttribute('aria-hidden', 'true');
+    });
+    var cur = slides[current];
+    revealAll(cur);
+    if (useMotion) {
+      gsap.fromTo(cur, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.45, ease: 'power3.out', clearProps: 'transform' });
+      cur.querySelectorAll('.diagram').forEach(drawDiagram);
+    }
+    pageEl.textContent = (current + 1) + ' / ' + slides.length;
+    setUrlSlide(current + 1);
+  }
+
+  function nearestSlide() {
+    var best = 0, bestDist = Infinity;
+    slides.forEach(function (s, k) {
+      var d = Math.abs(s.getBoundingClientRect().top - 64);
+      if (d < bestDist) { bestDist = d; best = k; }
+    });
+    return best;
+  }
+
+  function enter(i) {
+    presenting = true;
+    if (lenis) lenis.stop();
+    body.classList.add('presenting');
+    ui.hidden = false;
+    toggle.setAttribute('aria-pressed', 'true');
+    show(typeof i === 'number' ? i : nearestSlide());
+  }
+
+  function exit() {
+    if (!presenting) return;
+    presenting = false;
+    body.classList.remove('presenting');
+    ui.hidden = true;
+    toggle.setAttribute('aria-pressed', 'false');
+    slides.forEach(function (s) {
+      s.classList.remove('is-current'); s.removeAttribute('aria-hidden');
+      if (useMotion) gsap.set(s, { clearProps: 'opacity,transform' });
+      revealAll(s);
+    });
+    setUrlSlide(0);
+    var target = slides[current];
+    if (lenis) { lenis.start(); lenis.scrollTo(target, { immediate: true, offset: -64 }); }
+    else target.scrollIntoView({ block: 'start' });
+    if (useMotion) ST.refresh();
+    toggle.focus({ preventScroll: true });
+  }
+
+  toggle.addEventListener('click', function () { presenting ? exit() : enter(); });
+  document.querySelector('[data-deck-prev]').addEventListener('click', function (e) { e.stopPropagation(); show(current - 1); });
+  document.querySelector('[data-deck-next]').addEventListener('click', function (e) { e.stopPropagation(); show(current + 1); });
+  document.querySelector('[data-deck-exit]').addEventListener('click', function (e) { e.stopPropagation(); exit(); });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    var tag = (e.target.tagName || '').toLowerCase();
+    if (tag === 'input' || tag === 'textarea') return;
+    if (!presenting) {
+      if (e.key === 'p' || e.key === 'P') { e.preventDefault(); enter(); }
+      return;
+    }
+    switch (e.key) {
+      case 'ArrowRight': case 'ArrowDown': case 'PageDown': case ' ': case 'Enter':
+        if (e.key === 'Enter' && (tag === 'button' || tag === 'summary' || tag === 'a')) return;
+        e.preventDefault(); show(current + 1); break;
+      case 'ArrowLeft': case 'ArrowUp': case 'PageUp': case 'Backspace':
+        e.preventDefault(); show(current - 1); break;
+      case 'Home': e.preventDefault(); show(0); break;
+      case 'End': e.preventDefault(); show(slides.length - 1); break;
+      case 'Escape': case 'p': case 'P': e.preventDefault(); exit(); break;
+    }
+  });
+
+  // クリックで進む。左の端 1/4 は戻る。頁の中へのリンクは、その節のスライドへ飛ぶ。
+  document.addEventListener('click', function (e) {
+    if (!presenting) return;
+    var a = e.target.closest('a[href^="#"]');
+    if (a) {
+      var t = document.getElementById(a.getAttribute('href').slice(1));
+      var s = t && (t.closest('[data-slide]') || t.querySelector('[data-slide]'));
+      e.preventDefault();
+      if (s) show(slides.indexOf(s));
+      return;
+    }
+    if (e.target.closest('a, button, summary, details, input')) return;
+    if (!e.target.closest('[data-slide]')) return;
+    if (e.clientX < window.innerWidth / 4) show(current - 1);
+    else show(current + 1);
+  }, true);
+
+  // 途中の枚から開く: GAS では ?slide=N (doGet が SITE.slide に入れる)、手元では #slide-N
+  var start = SITE.slide || slideFromHash();
+  if (start > 0) enter(start - 1);
+  window.addEventListener('hashchange', function () {
+    var n = slideFromHash();
+    if (n > 0) { presenting ? show(n - 1) : enter(n - 1); }
+  });
+})();
