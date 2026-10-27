@@ -117,6 +117,15 @@ const BANTO_URL = '';
   // 頁をクリックで進む (リンクやボタンは除く)。左の端 1/4 は戻る。
   document.addEventListener('click', function (e) {
     if (!presenting) return;
+    // 頁の中へのリンクは、その節のスライドへ飛ぶ
+    var a = e.target.closest('a[href^="#"]');
+    if (a) {
+      var t = document.getElementById(a.getAttribute('href').slice(1));
+      var s = t && (t.closest('[data-slide]') || t.querySelector('[data-slide]'));
+      e.preventDefault();
+      if (s) show(slides.indexOf(s));
+      return;
+    }
     if (e.target.closest('a, button, summary, input')) return;
     if (!e.target.closest('[data-slide]')) return;
     if (e.clientX < window.innerWidth / 4) show(current - 1);

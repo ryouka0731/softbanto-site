@@ -16,8 +16,8 @@
   <a class="brand" href="#top" aria-label="SoftBanto のはじめへ"><span class="brand-mark" aria-hidden="true">番</span><span>SoftBanto</span></a>
   <nav class="bar-nav" aria-label="この頁の中">
     <a href="#trouble">困りごと</a>
-    <a href="#features">できること</a>
-    <a href="#start">使い始める</a>
+    <a href="#features">6つの機能</a>
+    <a href="#start">始め方</a>
     <a href="#faq">よくある質問</a>
   </nav>
   <button class="present-toggle" type="button" data-present-toggle hidden aria-keyshortcuts="P">プレゼン<kbd>P</kbd></button>
@@ -30,165 +30,232 @@
   <div class="hero-text">
     <p class="eyebrow">そふと番頭 ／ 通称 番頭</p>
     <h1><span class="nb">規程も手順書も、</span><br><span class="nb"><em>直すときは</em>写しで。</span></h1>
-    <p class="lede">Google ドキュメントとスプレッドシートを、そのまま書き換えずに「改訂版」で直します。確認を経てから正式版に反映するので、いつ・誰が・なぜ直したかが残ります。</p>
+    <p class="lede">Google の文書を、確認を経てから正式版に反映する道具です。</p>
+    <ol class="hero-flow" role="img" aria-label="流れの図: 正式版をコピーして改訂版を作り、直して確認依頼を出し、承認されたら正式版に反映する">
+      <li>正式版</li><li>改訂版で直す</li><li>確認依頼</li><li class="is-end">反映</li>
+    </ol>
     <p class="cta-row">
       <a class="btn" href="#" data-banto-link hidden>番頭を開く</a>
-      <a class="btn btn-ghost" href="#features">できることを見る</a>
+      <a class="btn btn-ghost" href="#features">6つの機能を見る</a>
     </p>
   </div>
   <figure class="hero-oshi" aria-label="推しのタクがあいさつしている">
     <img src="assets/taku-normal-idle.webp" alt="" width="288" height="338">
-    <figcaption class="bubble">おはようございます。今日の番、ここにまとめておきました。</figcaption>
+    <figcaption class="bubble">おはようございます。今日の番、まとめておきました。</figcaption>
   </figure>
 </section>
 
 <!-- 2 -->
 <section class="trouble" id="trouble" data-slide>
-  <h2 class="section-title"><span class="num">一</span>こんな困りごと、ありませんか</h2>
+  <h2 class="section-title"><span class="num">一</span>文書の直し方で起きる4つの困りごと</h2>
   <ul class="trouble-list">
-    <li><span class="t-icon" aria-hidden="true">📄</span>「就業規程_最新_確定版(2)」が、フォルダにいくつもある</li>
-    <li><span class="t-icon" aria-hidden="true">🕵️</span>どこを、誰が、いつ書き換えたのか、あとから追えない</li>
-    <li><span class="t-icon" aria-hidden="true">✋</span>上長に見てもらう前の文が、もう全員に見えてしまっている</li>
-    <li><span class="t-icon" aria-hidden="true">📨</span>頼まれた仕事が、メールとチャットに散らばっている</li>
+    <li><span class="t-icon" aria-hidden="true">📄</span><h3>最新版がどれか分からない</h3><p>「確定版(2)」が並ぶ</p></li>
+    <li><span class="t-icon" aria-hidden="true">🕵️</span><h3>誰が直したか追えない</h3><p>いつ・どこを・なぜ、が残らない</p></li>
+    <li><span class="t-icon" aria-hidden="true">✋</span><h3>確認前の文が見えている</h3><p>上長が見る前に全員へ届く</p></li>
+    <li><span class="t-icon" aria-hidden="true">📨</span><h3>頼まれごとが散らばる</h3><p>メールとチャットに分かれる</p></li>
   </ul>
-  <p class="trouble-answer">番頭は、この4つを Google Drive の中だけで片づけます。</p>
+  <p class="trouble-answer">番頭は、これを Google Drive の中で片づけます。</p>
 </section>
 
 <!-- できること -->
 <section class="features" id="features">
   <div class="features-head" data-slide>
-    <h2 class="section-title"><span class="num">二</span>できること</h2>
-    <p class="lede">正式版をいきなり書き換えない。それだけを守るための仕組みと、毎日の仕事を少し軽くする道具です。</p>
-    <ol class="feature-index" aria-label="できることの一覧">
-      <li>文書の版管理</li><li>確認依頼と反映</li><li>やること</li><li>予定と日報</li><li>推し</li><li>配る道具</li>
+    <h2 class="section-title"><span class="num">二</span>番頭でできる6つのこと</h2>
+    <ol class="feature-index">
+      <li><a href="#f-version"><span aria-hidden="true">🗂️</span>文書の版を管理する</a></li>
+      <li><a href="#f-review"><span aria-hidden="true">🔏</span>確認を経て反映する</a></li>
+      <li><a href="#f-tasks"><span aria-hidden="true">📋</span>頼まれた仕事を集める</a></li>
+      <li><a href="#f-plan"><span aria-hidden="true">🗓️</span>予定に並べ、日報に写す</a></li>
+      <li><a href="#f-oshi"><span aria-hidden="true">💬</span>推しがほめてくれる</a></li>
+      <li><a href="#f-kit"><span aria-hidden="true">🧰</span>手元の Claude から頼む</a></li>
     </ol>
   </div>
 
-  <article class="feature" data-slide>
-    <div class="feature-text">
-      <p class="feature-no">01</p>
-      <h3>文書の版管理</h3>
-      <p>正式版をコピーした「改訂版」で直し、区切りごとに「変更の記録」を残します。どの記録とも見比べられ、前の中身にも戻れます。</p>
-      <p class="note">Docs・Sheets・Slides に対応。Slides は読む・見比べるまで。</p>
-    </div>
-    <div class="mock mock-flow" aria-hidden="true">
-      <div class="flow-node is-main">正式版</div>
-      <div class="flow-arrow">コピー</div>
-      <div class="flow-node">改訂版「見直し」</div>
+  <article class="feature" id="f-version" data-slide>
+    <div class="mock mock-flow" role="img" aria-label="図: 正式版をコピーして改訂版を作り、改訂版に変更の記録が3つ積み重なっている">
+      <div class="docs-row">
+        <div class="doc is-main"><span class="doc-tag">正式版</span>就業規程</div>
+        <div class="arrow-r">コピー</div>
+        <div class="doc"><span class="doc-tag">改訂版</span>見直し</div>
+      </div>
       <ol class="flow-log">
         <li><span class="dot"></span>第3条の文言を直した<small>10:12</small></li>
         <li><span class="dot"></span>別表の金額を更新<small>11:40</small></li>
         <li><span class="dot"></span>附則を追加<small>14:05</small></li>
       </ol>
     </div>
+    <div class="feature-text">
+      <p class="feature-no">01</p>
+      <h3>正式版はそのまま、写しで直す</h3>
+      <p class="one">正式版をコピーした「改訂版」で直し、区切りごとに記録を残します。</p>
+      <ul class="points">
+        <li>どの記録とも見比べられる</li>
+        <li>前の中身に戻せる</li>
+        <li>Docs・Sheets・Slides に対応 (Slides は見るまで)</li>
+      </ul>
+    </div>
   </article>
 
-  <article class="feature" data-slide>
+  <article class="feature" id="f-review" data-slide>
+    <div class="mock mock-review" role="img" aria-label="図: 確認依頼に、消した行と足した行が色付きで出ている。承認の判が押され、正式版に反映される">
+      <ol class="steps-row">
+        <li>確認依頼</li><li>承認</li><li class="is-end">反映</li>
+      </ol>
+      <div class="review-card">
+        <p class="review-title">就業規程の見直し</p>
+        <p class="diff del">始業は午前9時とする。</p>
+        <p class="diff add">始業は午前9時30分とする。</p>
+        <p class="diff">終業は午後6時とする。</p>
+        <span class="hanko">承認</span>
+      </div>
+    </div>
     <div class="feature-text">
       <p class="feature-no">02</p>
-      <h3>確認依頼と反映</h3>
-      <p>直し終えたら「確認を依頼」。見る人には変わった行だけが色付きで出ます。承認されたら、正式版に反映します。</p>
-      <p class="note">反映しても文書は同じものなので、配った共有リンクはそのまま使えます。</p>
-    </div>
-    <div class="mock mock-review" aria-hidden="true">
-      <p class="review-title">確認依頼 #12　就業規程の見直し</p>
-      <p class="diff del">− 始業は午前9時とする。</p>
-      <p class="diff add">＋ 始業は午前9時30分とする。</p>
-      <p class="diff">　 終業は午後6時とする。</p>
-      <span class="hanko">承認</span>
+      <h3>確認を経てから、正式版に反映する</h3>
+      <p class="one">見る人には、変わった行だけが色付きで出ます。</p>
+      <ul class="points">
+        <li>承認されてから反映する</li>
+        <li>反映しても共有リンクは変わらない</li>
+      </ul>
     </div>
   </article>
 
-  <article class="feature" data-slide>
+  <article class="feature" id="f-tasks" data-slide>
+    <div class="mock mock-board" role="img" aria-label="図: メールとチャットと口頭の頼まれごとが、1つのボードの「これから」「進めている」「済んだ」の列に集まる">
+      <div class="sources"><span>📨 メール</span><span>💬 チャット</span><span>🗣️ 口頭</span></div>
+      <div class="arrow-d" aria-hidden="true"></div>
+      <div class="board">
+        <div class="col"><p>これから</p><span>入社手続きの書類<i>11/5</i></span><span>名刺の発注<i>11/8</i></span></div>
+        <div class="col"><p>進めている</p><span class="hot">年末調整の案内<i>11/1</i></span></div>
+        <div class="col"><p>済んだ</p><span class="done">健康診断の予約</span><span class="done">備品の棚卸し</span></div>
+      </div>
+    </div>
     <div class="feature-text">
       <p class="feature-no">03</p>
-      <h3>やること</h3>
-      <p>頼まれた仕事を1か所に集めます。担当・期限・工数を付けて、一覧・ボード・工程表で見られます。</p>
-      <p class="note">捨てたものも30日のあいだは戻せます。</p>
-    </div>
-    <div class="mock mock-board" aria-hidden="true">
-      <div class="col"><p>これから</p><span>入社手続きの書類</span><span>名刺の発注</span></div>
-      <div class="col"><p>進めている</p><span class="hot">年末調整の案内</span></div>
-      <div class="col"><p>済んだ</p><span class="done">健康診断の予約</span><span class="done">備品の棚卸し</span></div>
+      <h3>頼まれた仕事を、1か所に集める</h3>
+      <p class="one">「やること」として、担当・期限・工数を付けて並べます。</p>
+      <ul class="points">
+        <li>一覧・ボード・工程表で見る</li>
+        <li>捨てても30日は戻せる</li>
+      </ul>
     </div>
   </article>
 
-  <article class="feature" data-slide>
+  <article class="feature" id="f-plan" data-slide>
+    <div class="mock mock-day" role="img" aria-label="図: やることが、会議を避けてカレンダーの空き時間に入り、済んだものが日報の形になる">
+      <div class="plan-col">
+        <p class="plan-h">やること</p>
+        <span class="chip">年末調整の案内<i>期限 11/1</i></span>
+        <span class="chip">名刺の発注<i>期限 11/8</i></span>
+      </div>
+      <div class="arrow-r" aria-hidden="true"></div>
+      <div class="plan-col week">
+        <p class="plan-h">カレンダー</p>
+        <span class="slot meet">10:00 定例</span>
+        <span class="slot task">11:10 年末調整の案内</span>
+        <span class="slot task">14:00 名刺の発注</span>
+      </div>
+      <div class="arrow-r" aria-hidden="true"></div>
+      <div class="plan-col report">
+        <p class="plan-h">日報</p>
+        <p>✅ 健康診断の予約</p>
+        <p>📅 年末調整の案内</p>
+        <p>⛔️ なし</p>
+      </div>
+    </div>
     <div class="feature-text">
       <p class="feature-no">04</p>
-      <h3>予定と日報</h3>
-      <p>担当のやることを、期限の早いものから共有カレンダーに並べます。会議とは重ねません。今日片づけたものは、日報の形でそのまま写せます。</p>
-      <p class="note">予定に入れるのは、オンにした人のぶんだけ。</p>
-    </div>
-    <div class="mock mock-day" aria-hidden="true">
-      <div class="week">
-        <span class="slot meet">定例</span>
-        <span class="slot task">年末調整の案内</span>
-        <span class="slot task">名刺の発注</span>
-      </div>
-      <div class="report">
-        <p>✅ 今日やったこと<br><small>健康診断の予約・備品の棚卸し</small></p>
-        <p>📅 明日やること<br><small>年末調整の案内</small></p>
-        <p>⛔️ 困っていること<br><small>なし</small></p>
-      </div>
+      <h3>やることを予定に並べ、日報に写す</h3>
+      <p class="one">担当のやることを、共有カレンダーの空き時間に入れます。</p>
+      <ul class="points">
+        <li>期限の早いものから並べる</li>
+        <li>会議とは重ねない</li>
+        <li>済んだものを日報の形で写す</li>
+      </ul>
     </div>
   </article>
 
-  <article class="feature" data-slide>
+  <article class="feature" id="f-oshi" data-slide>
+    <div class="mock mock-oshi" role="img" aria-label="図: やることを済ませると、推しのタクとイツキがほめ、なつき度が上がる">
+      <p class="done-chip">✓ 健康診断の予約を済ませた</p>
+      <div class="oshi-pair">
+        <figure><img src="assets/taku-normal-praise.webp" alt="" width="281" height="322" loading="lazy"><figcaption>タク</figcaption></figure>
+        <figure><img src="assets/itsuki-normal-praise.webp" alt="" width="310" height="335" loading="lazy"><figcaption>イツキ</figcaption></figure>
+      </div>
+      <p class="bubble">ひとつ片づきましたね。</p>
+      <div class="bond"><span>なつき度</span><span class="bar"><span></span></span><span>Lv 4</span></div>
+    </div>
     <div class="feature-text">
       <p class="feature-no">05</p>
-      <h3>推し</h3>
-      <p>仕事を済ませると、選んだキャラクターがほめてくれます。使うほどなついていきます。自分で描いたキャラも5人まで作れます。</p>
-      <p class="note">要らない人は、自分の設定で止められます。</p>
-    </div>
-    <div class="mock mock-oshi" aria-hidden="true">
-      <figure><img src="assets/taku-normal-praise.webp" alt="" width="281" height="322" loading="lazy"><figcaption>タク</figcaption></figure>
-      <figure><img src="assets/itsuki-normal-praise.webp" alt="" width="310" height="335" loading="lazy"><figcaption>イツキ</figcaption></figure>
-      <p class="bubble">ひとつ片づきましたね。おつかれさまです。</p>
+      <h3>済ませると、推しがほめてくれる</h3>
+      <p class="one">選んだキャラクターが、使うほどなついていきます。</p>
+      <ul class="points">
+        <li>最初からいるキャラは6人</li>
+        <li>自分で描いたキャラも5人まで</li>
+        <li>要らなければ設定で止める</li>
+      </ul>
     </div>
   </article>
 
-  <article class="feature" data-slide>
+  <article class="feature" id="f-kit" data-slide>
+    <div class="mock mock-kit">
+      <svg viewBox="0 0 560 230" role="img" aria-labelledby="kit-t">
+        <title id="kit-t">図: 手元の Claude が命令を Google Drive に置き、番頭が1分以内に読んで結果を Drive に返す</title>
+        <defs>
+          <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="svg-shu" d="M0 0L10 5L0 10z"/></marker>
+        </defs>
+        <g class="node"><rect x="8" y="70" width="150" height="90" rx="10"/><text x="83" y="108">手元の</text><text x="83" y="134">Claude</text></g>
+        <g class="node is-mid"><rect x="205" y="70" width="150" height="90" rx="10"/><text x="280" y="108">Google</text><text x="280" y="134">Drive</text></g>
+        <g class="node is-main"><rect x="402" y="70" width="150" height="90" rx="10"/><text x="477" y="121">番頭</text></g>
+        <path class="link" d="M160 95H203" marker-end="url(#ah)"/>
+        <path class="link" d="M357 95H400" marker-end="url(#ah)"/>
+        <path class="link back" d="M400 140H357" marker-end="url(#ah)"/>
+        <path class="link back" d="M203 140H160" marker-end="url(#ah)"/>
+        <text class="lbl" x="181" y="50">命令</text>
+        <text class="lbl" x="378" y="50">1分以内</text>
+        <text class="lbl" x="280" y="200">結果が返る</text>
+      </svg>
+    </div>
     <div class="feature-text">
       <p class="feature-no">06</p>
-      <h3>配る道具</h3>
-      <p>手元の Claude から番頭を動かす道具一式を、画面から落とせます。やることの一覧や日報の下書きを、話しかけるだけで頼めます。</p>
-      <p class="note">正式版を直接なおすことと承認は、手元からはできません。</p>
-    </div>
-    <div class="mock mock-term" aria-hidden="true">
-      <p class="prompt">今日の日報の下書きを作って</p>
-      <p class="out">番頭に頼みました。……届きました。</p>
-      <p class="out">✅ 健康診断の予約<br>📅 年末調整の案内</p>
+      <h3>手元の Claude から、番頭に頼む</h3>
+      <p class="one">画面から道具一式を落とし、話しかけるだけで頼めます。</p>
+      <ul class="points">
+        <li>鍵もトークンも要らない</li>
+        <li>結果は1分以内に返る</li>
+        <li>正式版を直すことと承認は、手元からはできない</li>
+      </ul>
     </div>
   </article>
 </section>
 
 <!-- 3 -->
 <section class="start" id="start" data-slide>
-  <h2 class="section-title"><span class="num">三</span>使い始めるまで</h2>
+  <h2 class="section-title"><span class="num">三</span>3つの手順で使い始める</h2>
   <ol class="steps">
-    <li><span class="step-no">1</span><div><h3>最初の一人が置く</h3><p>Apps Script を1つ置き、画面のリンクを作ります。一度だけの作業です。</p></div></li>
-    <li><span class="step-no">2</span><div><h3>リンクを配る</h3><p>二人目からは、配られたリンクを Google アカウントで開くだけ。</p></div></li>
-    <li><span class="step-no">3</span><div><h3>文書を登録する</h3><p>いま使っている規程や手順書を登録し、改訂版を作って直し始めます。</p></div></li>
+    <li><span class="step-no">1</span><span class="step-icon" aria-hidden="true">🛠️</span><h3>置く</h3><p>最初の一人が Apps Script を置く</p></li>
+    <li><span class="step-no">2</span><span class="step-icon" aria-hidden="true">🔗</span><h3>配る</h3><p>画面のリンクを配る。二人目からは開くだけ</p></li>
+    <li><span class="step-no">3</span><span class="step-icon" aria-hidden="true">📄</span><h3>登録する</h3><p>いま使っている文書を登録する</p></li>
   </ol>
 </section>
 
 <!-- 4 -->
 <section class="faq" id="faq" data-slide>
   <h2 class="section-title"><span class="num">四</span>よくある質問</h2>
-  <dl class="faq-list">
-    <div><dt>エンジニアでなくても使えますか</dt><dd>使えます。画面に出るのは「正式版」「改訂版」「確認依頼」「反映」といった言葉だけです。</dd></div>
-    <div><dt>文書はどこに置かれますか</dt><dd>自分たちの Google Drive の中です。履歴も台帳も同じ場所にあり、文書の中身を外のサービスへ送りません。</dd></div>
-    <div><dt>色や文字の大きさの変更も残りますか</dt><dd>残しません。意味の変わらない見た目の調整は、見比べたときに出ないようにしています。</dd></div>
-    <div><dt>推しや日報は使わなくてもいいですか</dt><dd>はい。推しは自分の設定で止められ、予定や日報は使う人だけが使います。</dd></div>
-  </dl>
+  <div class="faq-list">
+    <details><summary><span class="q">エンジニアでなくても使える？</span><span class="a">使える</span></summary><p>画面に出るのは「正式版」「改訂版」「確認依頼」「反映」といった言葉です。Git の言葉は出しません。</p></details>
+    <details><summary><span class="q">文書はどこに置かれる？</span><span class="a">自分たちの Drive</span></summary><p>履歴も台帳も同じ Drive の中です。文書の中身を外のサービスへ送りません。</p></details>
+    <details><summary><span class="q">反映すると共有リンクは変わる？</span><span class="a">変わらない</span></summary><p>反映は同じ文書に書き戻すので、配ったリンクはそのまま使えます。</p></details>
+    <details><summary><span class="q">色や文字の大きさの変更も残る？</span><span class="a">残らない</span></summary><p>見た目だけの調整は、見比べたときに出ないようにしています。</p></details>
+    <details><summary><span class="q">推しや日報は使わなくてもよい？</span><span class="a">止められる</span></summary><p>推しは自分の設定で止められます。予定に入れる機能は、オンにした人だけが使います。</p></details>
+  </div>
 </section>
 
 <!-- 5 -->
 <section class="closing" id="open" data-slide>
   <img class="closing-oshi" src="assets/taku-normal-celebrate.webp" alt="" width="268" height="291" loading="lazy">
   <h2>直す前に、<em>写しを一枚。</em></h2>
-  <p class="lede">番頭は、規程や手順書を守る人のための道具です。</p>
+  <p class="lede">規程や手順書を、確認を経てから正式版にします。</p>
   <p class="cta-row">
     <a class="btn" href="#" data-banto-link hidden>番頭を開く</a>
     <a class="btn btn-ghost" href="#top">はじめに戻る</a>
