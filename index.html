@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SoftBanto（そふと番頭）</title>
+<meta name="description" content="Google ドキュメント・スプレッドシートの規程や手順書を、コピーで直して確認を経てから正式版に反映する。総務・人事のための版管理の道具です。">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="assets/taku-chibi-cheer.webp">
+</head>
+<body>
+<a class="skip" href="#main">本文へ</a>
+
+<header class="bar">
+  <a class="brand" href="#top" aria-label="SoftBanto のはじめへ"><span class="brand-mark" aria-hidden="true">番</span><span>SoftBanto</span></a>
+  <nav class="bar-nav" aria-label="この頁の中">
+    <a href="#trouble">困りごと</a>
+    <a href="#features">できること</a>
+    <a href="#start">使い始める</a>
+    <a href="#faq">よくある質問</a>
+  </nav>
+  <button class="present-toggle" type="button" data-present-toggle hidden aria-keyshortcuts="P">プレゼン<kbd>P</kbd></button>
+</header>
+
+<main id="main">
+
+<!-- 1 -->
+<section class="hero" id="top" data-slide>
+  <div class="hero-text">
+    <p class="eyebrow">そふと番頭 ／ 通称 番頭</p>
+    <h1><span class="nb">規程も手順書も、</span><br><span class="nb"><em>直すときは</em>写しで。</span></h1>
+    <p class="lede">Google ドキュメントとスプレッドシートを、そのまま書き換えずに「改訂版」で直します。確認を経てから正式版に反映するので、いつ・誰が・なぜ直したかが残ります。</p>
+    <p class="cta-row">
+      <a class="btn" href="#" data-banto-link hidden>番頭を開く</a>
+      <a class="btn btn-ghost" href="#features">できることを見る</a>
+    </p>
+  </div>
+  <figure class="hero-oshi" aria-label="推しのタクがあいさつしている">
+    <img src="assets/taku-normal-idle.webp" alt="" width="288" height="338">
+    <figcaption class="bubble">おはようございます。今日の番、ここにまとめておきました。</figcaption>
+  </figure>
+</section>
+
+<!-- 2 -->
+<section class="trouble" id="trouble" data-slide>
+  <h2 class="section-title"><span class="num">一</span>こんな困りごと、ありませんか</h2>
+  <ul class="trouble-list">
+    <li><span class="t-icon" aria-hidden="true">📄</span>「就業規程_最新_確定版(2)」が、フォルダにいくつもある</li>
+    <li><span class="t-icon" aria-hidden="true">🕵️</span>どこを、誰が、いつ書き換えたのか、あとから追えない</li>
+    <li><span class="t-icon" aria-hidden="true">✋</span>上長に見てもらう前の文が、もう全員に見えてしまっている</li>
+    <li><span class="t-icon" aria-hidden="true">📨</span>頼まれた仕事が、メールとチャットに散らばっている</li>
+  </ul>
+  <p class="trouble-answer">番頭は、この4つを Google Drive の中だけで片づけます。</p>
+</section>
+
+<!-- できること -->
+<section class="features" id="features">
+  <div class="features-head" data-slide>
+    <h2 class="section-title"><span class="num">二</span>できること</h2>
+    <p class="lede">正式版をいきなり書き換えない。それだけを守るための仕組みと、毎日の仕事を少し軽くする道具です。</p>
+    <ol class="feature-index" aria-label="できることの一覧">
+      <li>文書の版管理</li><li>確認依頼と反映</li><li>やること</li><li>予定と日報</li><li>推し</li><li>配る道具</li>
+    </ol>
+  </div>
+
+  <article class="feature" data-slide>
+    <div class="feature-text">
+      <p class="feature-no">01</p>
+      <h3>文書の版管理</h3>
+      <p>正式版をコピーした「改訂版」で直し、区切りごとに「変更の記録」を残します。どの記録とも見比べられ、前の中身にも戻れます。</p>
+      <p class="note">Docs・Sheets・Slides に対応。Slides は読む・見比べるまで。</p>
+    </div>
+    <div class="mock mock-flow" aria-hidden="true">
+      <div class="flow-node is-main">正式版</div>
+      <div class="flow-arrow">コピー</div>
+      <div class="flow-node">改訂版「見直し」</div>
+      <ol class="flow-log">
+        <li><span class="dot"></span>第3条の文言を直した<small>10:12</small></li>
+        <li><span class="dot"></span>別表の金額を更新<small>11:40</small></li>
+        <li><span class="dot"></span>附則を追加<small>14:05</small></li>
+      </ol>
+    </div>
+  </article>
+
+  <article class="feature" data-slide>
+    <div class="feature-text">
+      <p class="feature-no">02</p>
+      <h3>確認依頼と反映</h3>
+      <p>直し終えたら「確認を依頼」。見る人には変わった行だけが色付きで出ます。承認されたら、正式版に反映します。</p>
+      <p class="note">反映しても文書は同じものなので、配った共有リンクはそのまま使えます。</p>
+    </div>
+    <div class="mock mock-review" aria-hidden="true">
+      <p class="review-title">確認依頼 #12　就業規程の見直し</p>
+      <p class="diff del">− 始業は午前9時とする。</p>
+      <p class="diff add">＋ 始業は午前9時30分とする。</p>
+      <p class="diff">　 終業は午後6時とする。</p>
+      <span class="hanko">承認</span>
+    </div>
+  </article>
+
+  <article class="feature" data-slide>
+    <div class="feature-text">
+      <p class="feature-no">03</p>
+      <h3>やること</h3>
+      <p>頼まれた仕事を1か所に集めます。担当・期限・工数を付けて、一覧・ボード・工程表で見られます。</p>
+      <p class="note">捨てたものも30日のあいだは戻せます。</p>
+    </div>
+    <div class="mock mock-board" aria-hidden="true">
+      <div class="col"><p>これから</p><span>入社手続きの書類</span><span>名刺の発注</span></div>
+      <div class="col"><p>進めている</p><span class="hot">年末調整の案内</span></div>
+      <div class="col"><p>済んだ</p><span class="done">健康診断の予約</span><span class="done">備品の棚卸し</span></div>
+    </div>
+  </article>
+
+  <article class="feature" data-slide>
+    <div class="feature-text">
+      <p class="feature-no">04</p>
+      <h3>予定と日報</h3>
+      <p>担当のやることを、期限の早いものから共有カレンダーに並べます。会議とは重ねません。今日片づけたものは、日報の形でそのまま写せます。</p>
+      <p class="note">予定に入れるのは、オンにした人のぶんだけ。</p>
+    </div>
+    <div class="mock mock-day" aria-hidden="true">
+      <div class="week">
+        <span class="slot meet">定例</span>
+        <span class="slot task">年末調整の案内</span>
+        <span class="slot task">名刺の発注</span>
+      </div>
+      <div class="report">
+        <p>✅ 今日やったこと<br><small>健康診断の予約・備品の棚卸し</small></p>
+        <p>📅 明日やること<br><small>年末調整の案内</small></p>
+        <p>⛔️ 困っていること<br><small>なし</small></p>
+      </div>
+    </div>
+  </article>
+
+  <article class="feature" data-slide>
+    <div class="feature-text">
+      <p class="feature-no">05</p>
+      <h3>推し</h3>
+      <p>仕事を済ませると、選んだキャラクターがほめてくれます。使うほどなついていきます。自分で描いたキャラも5人まで作れます。</p>
+      <p class="note">要らない人は、自分の設定で止められます。</p>
+    </div>
+    <div class="mock mock-oshi" aria-hidden="true">
+      <figure><img src="assets/taku-normal-praise.webp" alt="" width="281" height="322" loading="lazy"><figcaption>タク</figcaption></figure>
+      <figure><img src="assets/itsuki-normal-praise.webp" alt="" width="310" height="335" loading="lazy"><figcaption>イツキ</figcaption></figure>
+      <p class="bubble">ひとつ片づきましたね。おつかれさまです。</p>
+    </div>
+  </article>
+
+  <article class="feature" data-slide>
+    <div class="feature-text">
+      <p class="feature-no">06</p>
+      <h3>配る道具</h3>
+      <p>手元の Claude から番頭を動かす道具一式を、画面から落とせます。やることの一覧や日報の下書きを、話しかけるだけで頼めます。</p>
+      <p class="note">正式版を直接なおすことと承認は、手元からはできません。</p>
+    </div>
+    <div class="mock mock-term" aria-hidden="true">
+      <p class="prompt">今日の日報の下書きを作って</p>
+      <p class="out">番頭に頼みました。……届きました。</p>
+      <p class="out">✅ 健康診断の予約<br>📅 年末調整の案内</p>
+    </div>
+  </article>
+</section>
+
+<!-- 3 -->
+<section class="start" id="start" data-slide>
+  <h2 class="section-title"><span class="num">三</span>使い始めるまで</h2>
+  <ol class="steps">
+    <li><span class="step-no">1</span><div><h3>最初の一人が置く</h3><p>Apps Script を1つ置き、画面のリンクを作ります。一度だけの作業です。</p></div></li>
+    <li><span class="step-no">2</span><div><h3>リンクを配る</h3><p>二人目からは、配られたリンクを Google アカウントで開くだけ。</p></div></li>
+    <li><span class="step-no">3</span><div><h3>文書を登録する</h3><p>いま使っている規程や手順書を登録し、改訂版を作って直し始めます。</p></div></li>
+  </ol>
+</section>
+
+<!-- 4 -->
+<section class="faq" id="faq" data-slide>
+  <h2 class="section-title"><span class="num">四</span>よくある質問</h2>
+  <dl class="faq-list">
+    <div><dt>エンジニアでなくても使えますか</dt><dd>使えます。画面に出るのは「正式版」「改訂版」「確認依頼」「反映」といった言葉だけです。</dd></div>
+    <div><dt>文書はどこに置かれますか</dt><dd>自分たちの Google Drive の中です。履歴も台帳も同じ場所にあり、文書の中身を外のサービスへ送りません。</dd></div>
+    <div><dt>色や文字の大きさの変更も残りますか</dt><dd>残しません。意味の変わらない見た目の調整は、見比べたときに出ないようにしています。</dd></div>
+    <div><dt>推しや日報は使わなくてもいいですか</dt><dd>はい。推しは自分の設定で止められ、予定や日報は使う人だけが使います。</dd></div>
+  </dl>
+</section>
+
+<!-- 5 -->
+<section class="closing" id="open" data-slide>
+  <img class="closing-oshi" src="assets/taku-normal-celebrate.webp" alt="" width="268" height="291" loading="lazy">
+  <h2>直す前に、<em>写しを一枚。</em></h2>
+  <p class="lede">番頭は、規程や手順書を守る人のための道具です。</p>
+  <p class="cta-row">
+    <a class="btn" href="#" data-banto-link hidden>番頭を開く</a>
+    <a class="btn btn-ghost" href="#top">はじめに戻る</a>
+  </p>
+</section>
+
+</main>
+
+<footer class="foot">
+  <p>SoftBanto（そふと番頭）・Google Apps Script で動きます</p>
+</footer>
+
+<div class="deck-ui" data-deck-ui hidden>
+  <button type="button" data-deck-prev aria-label="前の頁">‹</button>
+  <span class="deck-page" data-deck-page aria-live="polite">1 / 1</span>
+  <button type="button" data-deck-next aria-label="次の頁">›</button>
+  <button type="button" class="deck-exit" data-deck-exit aria-label="プレゼンを終える (Esc)">終える<kbd>Esc</kbd></button>
+</div>
+
+<script src="site.js"></script>
+</body>
+</html>
