@@ -6,6 +6,7 @@
   "scripts": {
     "bake": "node scripts/bake-assets.mjs",
     "preview": "node scripts/bake-assets.mjs && node scripts/preview.mjs",
-    "push": "npm run bake && clasp push -f"
+    "push": "npm run bake && clasp push -f",
+    "deploy": "node scripts/deploy.mjs"
   }
 }

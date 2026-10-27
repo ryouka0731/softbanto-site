@@ -32,8 +32,8 @@ clasp create-script --type webapp --title "SoftBanto 紹介" --rootDir src
 
 ```bash
 npm run push                      # 絵を焼いてから clasp push -f
-clasp create-deployment -d "初回"  # 初回だけ。出た deploymentId を控える
-clasp create-deployment -i <deploymentId> -d "何を変えたか"   # 2回目から。-i を付けないと URL が変わる
+clasp create-deployment -d "初回"  # 初回だけ。出た deploymentId を deployment.json に {"deploymentId": "..."} で書く
+npm run deploy -- "何を変えたか"   # 2回目から。deployment.json の ID へ差し替える (絵を焼く → push → 差し替え)。-i 無しの create-deployment は URL が変わるので使わない
 ```
 
 URL は Apps Script の画面の「デプロイを管理」で見られます (`https://script.google.com/macros/s/…/exec`)。
